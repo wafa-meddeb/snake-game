@@ -1,3 +1,5 @@
+import pynput
+import pyautogui
 from pynput.keyboard import Key, Controller
 import time
 
@@ -57,33 +59,67 @@ Fy = food[1]
 keyboard = Controller()
 time.sleep(5)
 keyboard.press(Key.right)
+pyautogui.pause = 10
 
 if Fx < snake[-1][0]:
+    keyboard.press(Key.left)
     go_left()
+    pyautogui.pause = 10
 if Fx > snake[-1][0]:
+    keyboard.press(Key.right)
     go_right()
+    pyautogui.pause = 10
 if Fy > snake[-1][1]:
+    keyboard.press(Key.down)
     go_down()
+    pyautogui.pause = 10
 if Fy < snake[-1][1]:
+    keyboard.press(Key.up)
     go_up()
+    pyautogui.pause = 10
 if Fx == snake[-1][0] and Fy == snake[-1][1]:
     snake.append([Fx, Fy])
+    pyautogui.pause = 10
 if Fx < snake[0][0]:
+    keyboard.press(Key.up)
     go_up()
+    pyautogui.pause = 10
+    keyboard.press(Key.right)
     go_right()
+    pyautogui.pause = 10
+    keyboard.press(Key.down)
     go_down()
+    pyautogui.pause = 10
 
 if Fx > snake[0][0]:
+    keyboard.press(Key.up)
     go_up()
+    pyautogui.pause = 10
+    keyboard.press(Key.left)
     go_left()
+    pyautogui.pause = 10
+    keyboard.press(Key.down)
     go_down()
+    pyautogui.pause = 10
 
 if Fy > snake[0][1]:
+    keyboard.press(Key.right)
     go_right()
+    pyautogui.pause = 10
+    keyboard.press(Key.down)
     go_down()
+    pyautogui.pause = 10
+    keyboard.press(Key.left)
     go_left()
-
+    pyautogui.pause = 10
 if Fy < snake[0][1]:
+    keyboard.press(Key.right)
     go_right()
+    pyautogui.pause = 10
+    keyboard.press(Key.up)
     go_up()
+    pyautogui.pause = 10
+    keyboard.press(Key.left)
     go_left()
+    pyautogui.pause = 10
+
