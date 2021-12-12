@@ -1,0 +1,89 @@
+from pynput.keyboard import Key, Controller
+import time
+
+
+def go_up():
+    while Fy < snake[-1][1]:
+        # heady-=1
+        new_position = [snake[-1][0], snake[-1][1]-1]
+        snake.append(new_position)
+        snake.remove(snake[0])
+
+
+def go_right():
+    while Fx > snake[-1][0]:
+        # headx += 1
+        new_position = [snake[-1][0] + 1, snake[-1][1]]
+        snake.append(new_position)
+        snake.remove(snake[0])
+
+
+def go_left():
+    while Fx < snake[-1][0]:
+        # headx -= 1
+        new_position = [snake[-1][0] - 1, snake[-1][1]]
+        snake.append(new_position)
+        snake.remove(snake[0])
+
+
+def go_down():
+    while Fy > snake[-1][1]:
+        # heady+= 1
+        new_position = [snake[-1][0], snake[-1][1]+1]
+        snake.append(new_position)
+        snake.remove(snake[0])
+
+
+grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+snake = [[3, 8], [4, 8], [5, 8]]
+food = [13, 8]   # how to change them each time?
+Fx = food[0]
+Fy = food[1]
+
+keyboard = Controller()
+time.sleep(5)
+keyboard.press(Key.right)
+
+if Fx < snake[-1][0]:
+    go_left()
+if Fx > snake[-1][0]:
+    go_right()
+if Fy > snake[-1][1]:
+    go_down()
+if Fy < snake[-1][1]:
+    go_up()
+if Fx == snake[-1][0] and Fy == snake[-1][1]:
+    snake.append([Fx, Fy])
+if Fx < snake[0][0]:
+    go_up()
+    go_right()
+    go_down()
+
+if Fx > snake[0][0]:
+    go_up()
+    go_left()
+    go_down()
+
+if Fy > snake[0][1]:
+    go_right()
+    go_down()
+    go_left()
+
+if Fy < snake[0][1]:
+    go_right()
+    go_up()
+    go_left()
